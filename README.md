@@ -6,31 +6,23 @@
 
 ---
 
-1. Install mise
+1. Clone repository
 
-   - Linux
+```
+git clone https://github.com/k-daiguji/js13kGames.git
+```
 
-     ```
-     curl https://mise.run | sh
-     ```
+1. Change mode setup.sh
 
-   - Windows
-     ```
-     winget install jdx.mise
-     ```
+```
+chmod +x setup.sh
+```
 
-1. Activate mise
+1. Run setup.sh
 
-   - Linux
-
-     ```
-     echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
-     ```
-
-   - Windows
-     ```
-     (&mise activate pwsh) | Out-String | Invoke-Expression
-     ```
+```
+./setup.sh
+```
 
 ## Prompts
 
