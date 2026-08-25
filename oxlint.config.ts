@@ -15,6 +15,13 @@ export default defineConfig({
   },
   plugins: ["import", "jest"],
   rules: {
+    "id-length": [
+      "error",
+      {
+        checkGeneric: false,
+        exceptions: ["_", "i"],
+      },
+    ],
     "import/no-default-export": "off",
     "import/no-named-export": "off",
     "jest/prefer-expect-assertions": "off",

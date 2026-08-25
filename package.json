@@ -11,13 +11,13 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@types/node": "^26.1.1",
-    "oxc-parser": "^0.139.0",
-    "oxfmt": "^0.58.0",
-    "oxlint": "^1.73.0",
-    "oxlint-tsgolint": "^0.24.0",
+    "@types/node": "^26.2.0",
+    "oxc-parser": "^0.144.0",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
+    "oxlint-tsgolint": "^7.0.2001",
     "typescript": "^7.0.2",
-    "vite": "^8.1.4",
+    "vite": "^8.2.1",
     "vitest": "^4.1.10"
   }
 }
