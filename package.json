@@ -1,7 +1,7 @@
 {
   "name": "js13kGames",
   "version": "0.0.0",
-  "workspaces": [],
+  "workspaces": ["2026"],
   "type": "module",
   "scripts": {
     "format": "oxfmt",
