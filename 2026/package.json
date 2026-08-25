@@ -1,0 +1,12 @@
+{
+  "name": "2026",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "vite build",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint --fix",
+    "lint:check": "oxlint",
+    "test": "vitest"
+  }
+}
