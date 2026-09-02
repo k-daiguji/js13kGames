@@ -1,12 +1,13 @@
 {
   "name": "2026",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build; cp -r dist/* ../dist",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
     "lint": "oxlint --fix",
     "lint:check": "oxlint",
+    "preview": "vite preview",
     "test": "vitest"
   }
 }

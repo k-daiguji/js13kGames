@@ -47,8 +47,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "outDir": "dist",
     "paths": {
-      "@/common/*": ["./common/src/*"],
-      "@/2026/*": ["./2026/src/*"]
+      "@/common/*": ["./common/src/*"]
     },
     "removeComments": true,
     "strict": true,

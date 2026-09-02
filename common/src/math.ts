@@ -23,4 +23,22 @@ const standardDeviation = (values: number[]) =>
 const unbiasedStandardDeviation = (values: number[]) =>
   sqrt(sum(calculateVariance(values)) / max(1, values.length - 1));
 
-export { average, max, min, sum, standardDeviation, unbiasedStandardDeviation };
+const totalForce = (x: number, y: number) => Math.sqrt(x ** 2 + y ** 2);
+
+const combination = <T>(values: T[]): [T, T][] => {
+  const [value, ...args] = values;
+  return value && args.length
+    ? [...args.map((arg): [T, T] => [value, arg]), ...combination(args)]
+    : [];
+};
+
+export {
+  average,
+  combination,
+  max,
+  min,
+  sum,
+  standardDeviation,
+  totalForce,
+  unbiasedStandardDeviation,
+};
