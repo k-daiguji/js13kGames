@@ -1,3 +1,5 @@
+import type { MixedHsl, PlainHsl } from "@/common/types/color";
+
 export interface Marble {
   x: number;
   y: number;
@@ -5,9 +7,9 @@ export interface Marble {
   vy: number;
   radius: number;
   isActive: boolean;
-  color: string;
+  color: MixedHsl | PlainHsl;
   isPlayer: boolean;
-  originalX?: number;
-  originalY?: number;
-  originalColor?: string;
+  originalX: number;
+  originalY: number;
+  originalColor: PlainHsl;
 }

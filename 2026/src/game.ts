@@ -1,9 +1,10 @@
 import { AudioManager } from "@/2026/audio";
-import type { Marble } from "@/2026/types/marble";
 import { ParticleSystem } from "@/2026/particles";
+import type { Marble } from "@/2026/types/marble";
 import { toArray } from "@/common/array";
 import { createCanvas } from "@/common/domCanvas";
 import { combination, max, min, totalForce } from "@/common/math";
+import type { MixedHsl } from "@/common/types/color";
 import type { Game } from "@/common/types/game";
 
 export class OhajikiGame implements Game {
@@ -59,18 +60,23 @@ export class OhajikiGame implements Game {
       y: 0,
     };
 
-    const marbleColors = ["white", "red", "green", "blue"] as const;
+    const marbleColors = [
+      "hsl(0 0 100)",
+      "hsl(0 100 50)",
+      "hsl(60 100 50)",
+      "hsl(240 100 50)",
+    ] as const;
     this.marbles = toArray(marbleCount).map((_, i) => {
       const angle = (i / marbleCount) * Math.PI * 2;
       const aaa = this.boardRadius * 0.5;
       const x = this.centerX + Math.cos(angle) * aaa;
       const y = this.centerY + Math.sin(angle) * aaa;
-      const color = marbleColors[i % marbleColors.length];
+      const originalColor = marbleColors[i % marbleColors.length];
       return {
         ...templateMarble,
-        color,
+        color: originalColor,
         isPlayer: false,
-        originalColor: color,
+        originalColor,
         originalX: x,
         originalY: y,
         x,
@@ -106,12 +112,12 @@ export class OhajikiGame implements Game {
   private respawnMarble(marble: Marble): Marble {
     return {
       ...marble,
-      color: marble.originalColor || marble.color,
+      color: marble.originalColor,
       isActive: true,
       vx: 0,
       vy: 0,
-      x: marble.originalX || marble.x,
-      y: marble.originalY || marble.y,
+      x: marble.originalX,
+      y: marble.originalY,
     };
   }
 
@@ -234,24 +240,6 @@ export class OhajikiGame implements Game {
     this.draw();
   }
 
-  private mergeColors(color1: string, color2: string): string {
-    const colorMap: { [key: string]: [number, number, number] } = {
-      blue: [0, 0, 255],
-      green: [0, 255, 0],
-      red: [255, 0, 0],
-      white: [255, 255, 255],
-    };
-    const rgb1 = colorMap[color1] || [128, 128, 128];
-    const rgb2 = colorMap[color2] || [128, 128, 128];
-    const merged = [
-      Math.round((rgb1[0] + rgb2[0]) / 2),
-      Math.round((rgb1[1] + rgb2[1]) / 2),
-      Math.round((rgb1[2] + rgb2[2]) / 2),
-    ] as const;
-
-    return `rgb(${merged[0]}, ${merged[1]}, ${merged[2]})`;
-  }
-
   private checkCollision(m1: Marble, m2: Marble): void {
     if (!m1.isActive || !m2.isActive) {
       return;
@@ -280,7 +268,7 @@ export class OhajikiGame implements Game {
       // Play collision sound
       this.audioManager.playCollisionSound();
 
-      m1.color = this.mergeColors(m1.color, m2.color);
+      m1.color = `color-mix(in hsl, ${m1.color}, ${m2.color})` as MixedHsl;
 
       // Impulse
       const impulse = dvn / 2;
