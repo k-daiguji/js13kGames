@@ -10,6 +10,9 @@ const max = (...values: number[]) => Math.max(...values);
 const min = (...values: number[]) => Math.min(...values);
 // Equal: values.reduce((a, b) => a < b ? a : b, Infinity);
 
+// const round = (value: number) => Math.round(value);
+const round = Math.round;
+
 const sqrt = (value: number) => Math.sqrt(value);
 
 const calculateVariance = (values: number[]) => {
@@ -37,6 +40,7 @@ export {
   combination,
   max,
   min,
+  round,
   sum,
   standardDeviation,
   totalForce,
